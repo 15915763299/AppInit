@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 一旦选择到了合适的图片，那么就不会进行之后的判断了 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <shape>
+            <corners android:radius="21dp" />
+            <solid android:color="@color/button_disable_gray" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape>
+            <corners android:radius="21dp" />
+            <solid android:color="@color/colorPrimaryDark" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:radius="21dp" />
+            <solid android:color="@color/colorPrimary" />
+        </shape>
+    </item>
+</selector>

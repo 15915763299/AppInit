@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5180ee</color>
+    <color name="colorPrimaryDark">#426bc9</color>
+    <color name="colorAccent">#f1a53b</color>
+    <color name="button_disable_gray">#cccccc</color>
+</resources>
