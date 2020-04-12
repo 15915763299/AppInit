@@ -6,7 +6,7 @@
 ```
 MainProcessStarter.start(checkPermission);
 ```
-* 更多注释都在代码中（该框架暂称为anchors框架，原作者不是本人，能看到是缘分，我修改了其中的一些BUG并加入大量注释，方便学习交流）
+* 更多注释都在代码中（该框架暂称为anchors框架，原作者不是本人，但我也不知道是谁，能看到是缘分，我修改了其中的一些BUG，一些会造成误解的命名，整理了代码并加入大量注释，并完成了这个Demo）
 
 ### 部分知识点
 + com.demo.appinit.start.anchors.BaseTask
