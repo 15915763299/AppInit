@@ -37,14 +37,13 @@ public class AnchorsManager {
     }
 
     /**
-     * 扩展支持 https://github.com/YummyLau/Anchors/issues/7   暂停机制
+     * 扩展支持 https://github.com/YummyLau/Anchors/issues/7 暂停机制
      * 调用前须知：
      * 1. 请充分理解 anchor 的作用并明白，为何 application sleep 频繁等待代码块执行的原因
      * 2. 如果调用 requestBlockWhenFinish 则意味着任务链在 task 执行完毕之后会进入等待阶段，如果此时等待的 task 在[初始节点，Anchors]链中则可能导致界面卡主
      * 3. 在调用 requestBlockWhenFinish 设置等待任务的前提下务必保证 anchors 已经解锁 或者 任务链上没有 anchors。
      *
      * @param task block目标task
-     * @return
      */
     @Nullable
     public LockableAnchor requestBlockWhenFinish(BaseTask task) {

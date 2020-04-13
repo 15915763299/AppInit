@@ -1,5 +1,6 @@
 # App启动优化
-该框架暂称为anchors框架吧，主要实现逻辑在`com.demo.appinit.anchors`中，我修改了其中的一些BUG，一些会造成误解的命名，整理了代码并加入大量注释，并完成了这个Demo
+* 代码是在一个项目中拿到的，主要实现逻辑在`com.demo.appinit.anchors`中，我修改了其中的一些BUG，一些会造成误解的命名，整理了代码并加入大量注释，并完成了这个Demo
+* 经过不断地查找，找到了[开源的地方](https://github.com/YummyLau/Anchors)
 
 ### 使用方式
 * 自定义Task继承`BaseTask`，实现一个任务的执行。
@@ -59,9 +60,10 @@ MainProcessStarter.start(checkPermission);
         }
     }
 ```
-最终启动变快的原因就在于这个`sHandler.post(task);`（`sHandler`的Looper是主线程的Looper）。
-<br>当每个task执行时，会放入主线程的消息队列的末尾，相当于不是立即执行，而是等待主线程现有的任务执行完了才执行，相当于给App启动“让路”。
-<br>从整体来看，所有的启动任务都后移了，App启动的任务会被稍微“提前”，所以达到了优化的效果。
+* 首先异步执行当然会减少启动时间，那如果全部都是同步执行呢？经过测试，启动过程也是变快了的。
+* 最终启动变快的原因就在于这个`sHandler.post(task);`（`sHandler`的Looper是主线程的Looper）。
+* 当每个task执行时，会放入主线程的消息队列的末尾，相当于不是立即执行，而是等待主线程现有的任务执行完了才执行，相当于给App启动“让路”。
+* 从整体来看，大部分启动任务都后移了，App启动的任务会被稍微“提前”，所以达到了优化的效果。
 
 ### 部分知识点
 + com.demo.appinit.start.anchors.BaseTask

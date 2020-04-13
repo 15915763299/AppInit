@@ -3,6 +3,7 @@ package com.demo.appinit;
 import android.Manifest;
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.demo.appinit.start.PermissionManager;
 import com.demo.appinit.start.factory.MainProcessStarter;
@@ -28,14 +29,16 @@ public class App extends Application {
 
     @Override
     public void onCreate() {
+        Log.e("App", "onCreate-start");
         super.onCreate();
         boolean checkPermission = checkPermission();
         MainProcessStarter.start(checkPermission);
-        try {
-            Thread.sleep(600);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(600);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        Log.e("App", "onCreate-end");
     }
 
     /**

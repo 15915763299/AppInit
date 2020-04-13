@@ -22,12 +22,13 @@ public class SimulateTask extends BaseTask {
 
     @Override
     protected void run(String name) {
+        Log.e("SimulateTask", name + "-start");
         try {
             Thread.sleep(exeTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.e("SimulateTask", name + " finish");
+        Log.e("SimulateTask", name + "-finish");
     }
 
 

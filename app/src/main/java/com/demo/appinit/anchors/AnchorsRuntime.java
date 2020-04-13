@@ -192,8 +192,6 @@ class AnchorsRuntime {
      * 2.遍历初始化运行时数据并打印log
      * 3.如果锚点不存在，则移除
      * 4.提升锚点链的优先级
-     *
-     * @param task
      */
     static void traversalDependenciesAndInit(@NonNull BaseTask task) {
         //获取依赖树最大深度
@@ -219,8 +217,6 @@ class AnchorsRuntime {
 
     /**
      * 递归向上设置优先级
-     *
-     * @param task
      */
     private static void traversalMaxTaskPriority(BaseTask task) {
         if (task == null) {
@@ -236,10 +232,6 @@ class AnchorsRuntime {
      * 遍历依赖树
      * 1. 初始化 sTaskRuntimeInfo
      * 2. 判断锚点是否存在依赖树中
-     *
-     * @param task
-     * @param pathTasks
-     * @param pathLen
      */
     private static void traversalDependenciesPath(@NonNull BaseTask task, BaseTask[] pathTasks, int pathLen) {
         pathTasks[pathLen++] = task;
@@ -265,7 +257,7 @@ class AnchorsRuntime {
                         S_TASK_RUNTIME_INFO.put(pathItem.getId(), taskRuntimeInfo);
                     }
                     if (sDebuggable) {
-                        stringBuilder.append((i == 0 ? "" : " --> ") + pathItem.getId());
+                        stringBuilder.append(i == 0 ? "" : " --> ").append(pathItem.getId());
                     }
                 }
             }
@@ -281,9 +273,6 @@ class AnchorsRuntime {
 
     /**
      * 获取依赖树的最大深度
-     *
-     * @param task
-     * @return
      */
     private static int getDependenciesMaxDepth(@NonNull BaseTask task, Set<BaseTask> sTraversalVisitor) {
         //判断依赖路径是否存在异常，不允许存在回环的依赖
@@ -294,8 +283,7 @@ class AnchorsRuntime {
             throw new RuntimeException("Do not allow dependency graphs to have a loopback！Related task'id is " + task.getId() + "!");
         }
         for (BaseTask behindTask : task.getBehindTasks()) {
-            Set<BaseTask> newTasks = new HashSet<>();
-            newTasks.addAll(sTraversalVisitor);
+            Set<BaseTask> newTasks = new HashSet<>(sTraversalVisitor);
             int depth = getDependenciesMaxDepth(behindTask, newTasks);
             if (depth >= maxDepth) {
                 maxDepth = depth;
