@@ -35,7 +35,7 @@ public class MainProcessStarter {
                 .add(StartTasks.START_NET_REQUEST);
         BaseTask permissionTask = permissionProject.build();
 
-        AnchorsManager anchorsManager = AnchorsManager.getInstance().debuggable(false);
+        AnchorsManager anchorsManager = AnchorsManager.getInstance().debuggable(true);
         // 没有权限的情况下，还是 permissionTask 组的依赖需要加入等待权限的确定任务，从而阻塞 sdk 初始化，等待授权
         if (!isAllPermissionGranted) {
             BaseTask awaitPermStartTask = factory.getTask(StartTasks.START_AWAIT_PERMISSION);

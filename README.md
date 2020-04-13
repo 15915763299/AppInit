@@ -1,6 +1,6 @@
 # App启动优化
-* 代码是在一个项目中拿到的，主要实现逻辑在`com.demo.appinit.anchors`中，我修改了其中的一些BUG，一些会造成误解的命名，整理了代码并加入大量注释，并完成了这个Demo
-* 经过不断地查找，找到了[开源的地方](https://github.com/YummyLau/Anchors)
+* 代码是在一个项目中拿到的，主要实现逻辑在`com.demo.appinit.anchors`中，修改了其中的一些BUG，一些会造成误解的命名，整理了代码并加入大量注释，并完成了这个Demo
+* 经过不断地查找，找到了最初项目[开源的地方](https://github.com/YummyLau/Anchors)
 
 ### 使用方式
 * 自定义Task继承`BaseTask`，实现一个任务的执行。
@@ -20,10 +20,12 @@ MainProcessStarter.start(checkPermission);
 * 当一个task执行完成时，会将自己的后置任务`behindTasks`逐个启动，此时后置的任务会判断自己还有没有前置的任务，如果有就不执行，没有才执行。
 ##### Project
 * Project的存在意义在于他的Builder，他能构造一个链式依赖的task链，就是一一依赖，最终会逐个执行。
+##### AnchorsManager
+* `BaseTask`是不能直接调用`start`方法执行的，必须通过`AnchorsManager`的`start`才能执行，它定义了如何正确地执行一个task。
+* 从`start`方法可以看出，锚点任务都会在`start`所在方法内执行完（比如说我在onCreate中调用了start，则锚点任务都会在onCreate方法中执行）
 ##### AnchorsRuntime
-* `BaseTask`是不能直接调用`start`方法执行的，必须通过`AnchorsRuntime`的`start`才能执行，它定义了如何正确地执行一个task。
-* `AnchorsRuntime`会对整个执行过程记录信息，并打印出log
-* `AnchorsRuntime`管理着一个线程池，用于执行异步任务
+* 会对整个执行过程记录信息，并打印出log
+* 管理着一个线程池，用于执行异步任务
 ##### LockableTask & LockableAnchor
 * 可以通用过这两个类实现整个执行过程的阻塞，当然也可以自定义，比如`AwaitPermStartTask`
 

@@ -23,7 +23,6 @@ public class AwaitPermStartTask extends BaseTask {
 
     @Override
     protected void run(String name) {
-        Log.e("AwaitPermStartTask", "start");
         // 已经有权限可以结束了
         if (App.getApp().checkPermission()) {
             return;
@@ -46,6 +45,5 @@ public class AwaitPermStartTask extends BaseTask {
         } catch (Exception ignore) {
 
         }
-        Log.e("AwaitPermStartTask", "end");
     }
 }

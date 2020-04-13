@@ -1,7 +1,5 @@
 package com.demo.appinit.start.task;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.demo.appinit.anchors.BaseTask;
@@ -15,20 +13,18 @@ public class SimulateTask extends BaseTask {
 
     private long exeTime;
 
-    public SimulateTask(@NonNull String id, long exeTime) {
+    public SimulateTask(@NonNull String id, long exeTime, boolean is) {
         super(id);
         this.exeTime = exeTime;
     }
 
     @Override
     protected void run(String name) {
-        Log.e("SimulateTask", name + "-start");
         try {
             Thread.sleep(exeTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.e("SimulateTask", name + "-finish");
     }
 
 
