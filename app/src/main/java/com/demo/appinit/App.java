@@ -31,11 +31,11 @@ public class App extends Application {
         super.onCreate();
         boolean checkPermission = checkPermission();
         MainProcessStarter.start(checkPermission);
-//        try {
-//            Thread.sleep(600);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Thread.sleep(600);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

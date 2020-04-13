@@ -98,7 +98,7 @@ public class AnchorsManager {
         AnchorsRuntime.traversalDependenciesAndInit(startTask);
         boolean logEnd = logStartWithAnchorsInfo();
 
-        //如果有锚点task，会被记录
+        //如果是锚点task，会被记录到AnchorsRuntime中
         startTask.start();
         //运行所有锚点task
         while (AnchorsRuntime.hasAnchorTasks()) {
