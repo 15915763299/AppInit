@@ -21,6 +21,7 @@ public class App extends Application {
 
     @Override
     protected void attachBaseContext(Context base) {
+        LaunchTimeRecoder.startRecord();
         super.attachBaseContext(base);
         app = this;
     }
@@ -30,6 +31,11 @@ public class App extends Application {
         super.onCreate();
         boolean checkPermission = checkPermission();
         MainProcessStarter.start(checkPermission);
+//        try {
+//            Thread.sleep(600);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**

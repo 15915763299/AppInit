@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.demo.appinit.LaunchTimeRecoder;
 import com.demo.appinit.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,5 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        LaunchTimeRecoder.endRecord();
+    }
 
 }

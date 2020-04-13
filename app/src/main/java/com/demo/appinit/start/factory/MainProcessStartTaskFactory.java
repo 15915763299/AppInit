@@ -34,7 +34,7 @@ public class MainProcessStartTaskFactory extends Project.TaskFactory {
                     case StartTasks.START_AWAIT_PERMISSION:
                         return new AwaitPermStartTask(taskName);
                     case StartTasks.START_SAVE_INFO_TO_STORAGE:
-                        return new SimulateTask(taskName, 120);
+                        return new SimulateTask(taskName, 130);
                     case StartTasks.START_TASK_4:
                         return new SimulateTask(taskName, 50);
                     case StartTasks.START_TASK_5:

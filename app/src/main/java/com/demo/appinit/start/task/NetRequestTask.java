@@ -1,7 +1,8 @@
 package com.demo.appinit.start.task;
 
-import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.MessageQueue;
 import android.util.Log;
 
@@ -20,10 +21,11 @@ import com.demo.appinit.anchors.BaseTask;
  */
 public class NetRequestTask extends BaseTask {
 
+    private Handler handler = new Handler(Looper.getMainLooper());
     private long asyncTime;
 
     public NetRequestTask(@NonNull String id, long asyncTime) {
-        super(id);
+        super(id, true);
         this.asyncTime = asyncTime;
     }
 
@@ -34,7 +36,7 @@ public class NetRequestTask extends BaseTask {
                 App.getApp().getMainLooper().getQueue().addIdleHandler(new MessageQueue.IdleHandler() {
                     @Override
                     public boolean queueIdle() {
-                        new SimulateNetWork().execute(asyncTime);
+                        net();
                         //返回false就会被从mIdleHandlers中移除，不会被再次执行
                         return false;
                     }
@@ -42,32 +44,47 @@ public class NetRequestTask extends BaseTask {
             } catch (Throwable ignore) {
             }
         } else {
-            new SimulateNetWork().execute(asyncTime);
+            net();
         }
     }
 
-    private static class SimulateNetWork extends AsyncTask<Long, Void, Void> {
+    private void net() {
+        try {
+            Thread.sleep(asyncTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        /**
-         * 模拟网络请求
-         *
-         * @param longs 异步等待时间
-         */
-        @Override
-        protected Void doInBackground(Long... longs) {
-            try {
-                Thread.sleep(longs[0]);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("SimulateNetWork", Thread.currentThread().getName() + " response");
             }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            Log.e("SimulateNetWork", "response");
-        }
+        });
     }
+
+//    private static class SimulateNetWork extends AsyncTask<Long, Void, Void> {
+//
+//        /**
+//         * 模拟网络请求
+//         *
+//         * @param longs 异步等待时间
+//         */
+//        @Override
+//        protected Void doInBackground(Long... longs) {
+//            try {
+//                Thread.sleep(longs[0]);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//            Log.e("SimulateNetWork", "response");
+//        }
+//    }
 
 
 }
