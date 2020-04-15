@@ -3,7 +3,7 @@ package com.demo.appinit;
 import android.Manifest;
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
+import android.os.Trace;
 
 import com.demo.appinit.start.PermissionManager;
 import com.demo.appinit.start.factory.MainProcessStarter;
@@ -29,7 +29,7 @@ public class App extends Application {
 
     @Override
     public void onCreate() {
-        Log.e("App", "onCreate-start");
+        Trace.beginSection("App-onCreate");
         super.onCreate();
         boolean checkPermission = checkPermission();
         MainProcessStarter.start(checkPermission);
@@ -38,7 +38,7 @@ public class App extends Application {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        Log.e("App", "onCreate-end");
+        Trace.endSection();
     }
 
     /**

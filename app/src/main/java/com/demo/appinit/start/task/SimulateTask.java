@@ -13,8 +13,8 @@ public class SimulateTask extends BaseTask {
 
     private long exeTime;
 
-    public SimulateTask(@NonNull String id, long exeTime, boolean is) {
-        super(id);
+    public SimulateTask(@NonNull String id, long exeTime, boolean isAsync) {
+        super(id, isAsync);
         this.exeTime = exeTime;
     }
 
