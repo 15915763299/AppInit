@@ -23,15 +23,11 @@ public class MainProcessStarter {
                 .add(StartTasks.START_TASK_3).dependOn(StartTasks.START_CONFIG_PRELOAD);
         BaseTask noPermissionTask = noPermissionProject.build();
 
-
         Project.Builder permissionProject = new Project.Builder("p2", factory)
-                // 保存文件到本地
-                .add(StartTasks.START_SAVE_INFO_TO_STORAGE)
-                // 下面三个任务需要在保存信息之后执行
+                .add(StartTasks.START_SAVE_INFO_TO_STORAGE)// 下面三个任务需要在保存信息之后执行
                 .add(StartTasks.START_TASK_4).dependOn(StartTasks.START_SAVE_INFO_TO_STORAGE)
                 .add(StartTasks.START_TASK_5).dependOn(StartTasks.START_SAVE_INFO_TO_STORAGE)
                 .add(StartTasks.START_TASK_6).dependOn(StartTasks.START_SAVE_INFO_TO_STORAGE)
-                // 向后台发送信息
                 .add(StartTasks.START_NET_REQUEST);
         BaseTask permissionTask = permissionProject.build();
 

@@ -1,4 +1,5 @@
 # App启动优化
+* 更详细分析请看博客：[使用Anchors框架对App启动进行优化](https://juejin.im/post/5e95c6d3e51d4546ff6ffb41)
 * 代码是在一个项目中拿到的，主要实现逻辑在`com.demo.appinit.anchors`中，修改了其中的一些BUG，一些会造成误解的命名，整理了代码并加入大量注释，并完成了这个Demo
 * 经过不断地查找，找到了最初项目[开源的地方](https://github.com/YummyLau/Anchors)
 
